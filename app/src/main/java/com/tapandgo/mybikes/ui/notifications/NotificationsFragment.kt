@@ -34,6 +34,7 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+        notificationsViewModel.retrieveStationInfo()
         return root
     }
 
