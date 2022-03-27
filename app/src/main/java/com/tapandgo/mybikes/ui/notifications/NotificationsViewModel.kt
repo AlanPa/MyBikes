@@ -24,7 +24,9 @@ private val repository: MyBikesRepository
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = repository.getStationInfo()
-                _text.postValue("Name : ${result.name}\nAddress : ${result.address}")
+                _text.postValue("Name : ${result.name}\nAddress : ${result.address}\n" +
+                        "Lat : ${result.position.lat}\n" +
+                        "Lng : ${result.position.lng}")
             } catch (e: Exception) {
                 _text.postValue("${e.message}")
             }

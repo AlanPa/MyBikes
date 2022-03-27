@@ -1,22 +1,17 @@
 package com.tapandgo.mybikes.model
 
-import com.google.android.gms.maps.model.LatLng
-
 data class Station (
     val number: Int,
     val name: String,
     val address: String,
-    val position: LatLng, // FIXME (lat and lng always 0)
+    val position: GeoPosition,
     val status: String,
-    //val connected: Boolean, FIXME
-    //val mainStands: Stand, FIXME
+    val available_bikes: Int,
+    val available_bike_stands: Int,
 ) {
-    class Stand (
-        val availabilities: StationAvailabilities
-    )
 
-    class StationAvailabilities(
-        val bikes: Int,
-        val stands: Int,
+    class GeoPosition(
+        val lat: Float,
+        val lng: Float,
     )
 }
