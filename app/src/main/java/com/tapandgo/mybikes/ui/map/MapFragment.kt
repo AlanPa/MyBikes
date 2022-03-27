@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -29,6 +30,11 @@ class MapFragment : Fragment() {
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        googleMap.setOnMarkerClickListener {
+            val action = MapFragmentDirections.actionMapFragmentToNavigationDashboard()
+            findNavController().navigate(action)
+            true
+        }
     }
 
     override fun onCreateView(
