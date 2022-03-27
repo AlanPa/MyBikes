@@ -6,10 +6,10 @@ data class Station (
     val number: Int,
     val name: String,
     val address: String,
-    val position: LatLng,
+    val position: LatLng, // FIXME (lat and lng always 0)
     val status: String,
-    val connected: Boolean,
-    val mainStands: Stand,
+    //val connected: Boolean, FIXME
+    //val mainStands: Stand, FIXME
 ) {
     class Stand (
         val availabilities: StationAvailabilities
