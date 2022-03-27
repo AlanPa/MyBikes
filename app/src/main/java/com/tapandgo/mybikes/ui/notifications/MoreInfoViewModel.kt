@@ -11,12 +11,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotificationsViewModel @Inject constructor(
+class MoreInfoViewModel @Inject constructor(
 private val repository: MyBikesRepository
 ) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is More Info Fragment"
     }
     val text: LiveData<String> = _text
 

@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.tapandgo.mybikes.databinding.FragmentNotificationsBinding
+import com.tapandgo.mybikes.databinding.FragmentMoreInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotificationsFragment : Fragment() {
+class MoreInfoFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentMoreInfoBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,17 +24,17 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val moreInfoViewModel =
+            ViewModelProvider(this)[MoreInfoViewModel::class.java]
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentMoreInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        moreInfoViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        notificationsViewModel.retrieveStationInfo()
+        moreInfoViewModel.retrieveStationInfo()
         return root
     }
 
