@@ -17,7 +17,7 @@ data class Station (
 ) {
 
     class GeoPosition(
-        val lat: Float,
-        val lng: Float,
+        val lat: Double,
+        val lng: Double,
     )
 }

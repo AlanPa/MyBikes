@@ -9,22 +9,25 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.tapandgo.mybikes.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
-            app:destination="@id/navigation_more_info" />
-    </fragment>
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_more_info"
         android:name="com.tapandgo.mybikes.ui.notifications.MoreInfoFragment"
         android:label="@string/detail_title"
-        tools:layout="@layout/fragment_more_info" />
+        tools:layout="@layout/fragment_more_info" >
+        <argument
+            android:name="stationNumber"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.tapandgo.mybikes.ui.map.MapFragment"
         android:label="@string/title_map"
         tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_mapFragment_to_navigation_more_info"
+            app:destination="@id/navigation_more_info" />
         <action
             android:id="@+id/action_mapFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />

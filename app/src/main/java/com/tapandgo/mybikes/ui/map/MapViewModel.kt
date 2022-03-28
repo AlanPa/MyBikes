@@ -1,9 +1,10 @@
-package com.tapandgo.mybikes.ui.dashboard
+package com.tapandgo.mybikes.ui.map
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tapandgo.mybikes.model.Station
 import com.tapandgo.mybikes.repository.MyBikesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,26 +12,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(
-    private val repository: MyBikesRepository
+class MapViewModel @Inject constructor(
+private val repository: MyBikesRepository
 ) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+    // Mutable live data
+    private val _stationList = MutableLiveData<List<Station>>()
+    // Variables bind with the view
+    val stationList: LiveData<List<Station>> = _stationList
 
     init {
         retrieveStations()
     }
 
+    /**
+     * Get station list
+     */
     private fun retrieveStations() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val listResult = repository.getStations()
-                _text.postValue("${listResult.size} stations retrieved")
+                _stationList.postValue(repository.getStations())
             } catch (e: Exception) {
-                _text.postValue("${e.message}")
+                _stationList.postValue(emptyList())
             }
         }
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.tapandgo.mybikes.databinding.FragmentMoreInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MoreInfoFragment : Fragment() {
 
     private var _binding: FragmentMoreInfoBinding? = null
+    private val args: MoreInfoFragmentArgs by navArgs()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -59,7 +61,7 @@ class MoreInfoFragment : Fragment() {
             availableStandsField.text = it.toString()
         }
         // Call the method to get data
-        moreInfoViewModel.retrieveStationInfo()
+        moreInfoViewModel.retrieveStationInfo(args.stationNumber)
         return root
     }
 

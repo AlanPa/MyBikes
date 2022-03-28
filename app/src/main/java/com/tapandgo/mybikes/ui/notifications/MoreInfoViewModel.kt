@@ -34,10 +34,10 @@ private val repository: MyBikesRepository
     /**
      * Get station information
      */
-    fun retrieveStationInfo() {
+    fun retrieveStationInfo(stationNumber: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = repository.getStationInfo()
+                val result = repository.getStationInfo(stationNumber)
                 _stationName.postValue(result.name)
                 _address.postValue(result.address)
                 _status.postValue(result.status)

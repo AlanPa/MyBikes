@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,18 +25,26 @@ class MapFragment : Fragment() {
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
          * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
          * If Google Play services is not installed on the device, the user will be prompted to
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        googleMap.setOnMarkerClickListener {
-            val action = MapFragmentDirections.actionMapFragmentToNavigationDashboard()
-            findNavController().navigate(action)
-            true
+        val mapViewModel = ViewModelProvider(this)[MapViewModel::class.java]
+        mapViewModel.stationList.observe(viewLifecycleOwner) { list ->
+             list.forEach { station ->
+                 val pos = LatLng(station.position.lat, station.position.lng)
+                 val marker = googleMap.addMarker(MarkerOptions().position(pos).title(station.name))
+                 marker?.tag = station.number
+            }
+            val nantes = LatLng(47.20, -1.54)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(nantes))
+            googleMap.setOnMarkerClickListener { marker ->
+                marker.tag?.let { tag ->
+                    val action = MapFragmentDirections.actionMapFragmentToNavigationMoreInfo(tag as Int)
+                    findNavController().navigate(action)
+                }
+                true
+            }
         }
     }
 
