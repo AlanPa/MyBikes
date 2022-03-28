@@ -4,6 +4,7 @@
     <string name="title_map">Map</string>
     <string name="detail_title">Station information</string>
     <string name="detail_address">Address:</string>
+    <string name="detail_status">Status:</string>
     <string name="detail_last_update">Last update:</string>
     <string name="detail_available_bikes">Available bikes</string>
     <string name="detail_available_stands">Available stands</string>

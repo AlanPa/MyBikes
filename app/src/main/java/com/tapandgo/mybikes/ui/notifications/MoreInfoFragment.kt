@@ -42,6 +42,10 @@ class MoreInfoFragment : Fragment() {
         moreInfoViewModel.address.observe(viewLifecycleOwner) {
             addressField.text = it
         }
+        val statusField: TextView = binding.statusField
+        moreInfoViewModel.status.observe(viewLifecycleOwner) {
+            statusField.text = it
+        }
         val lastUpdateField: TextView = binding.moreInfoLastUpdateField
         moreInfoViewModel.lastUpdate.observe(viewLifecycleOwner) {
             lastUpdateField.text = it
