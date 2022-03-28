@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.tapandgo.mybikes.databinding.FragmentMoreInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Display information for a specific station
+ */
 @AndroidEntryPoint
 class MoreInfoFragment : Fragment() {
 
@@ -30,10 +33,28 @@ class MoreInfoFragment : Fragment() {
         _binding = FragmentMoreInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        moreInfoViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Bind each field with the model data
+        val stationNameField: TextView = binding.stationNameField
+        moreInfoViewModel.stationName.observe(viewLifecycleOwner) {
+            stationNameField.text = it
         }
+        val addressField: TextView = binding.moreInfoAddressField
+        moreInfoViewModel.address.observe(viewLifecycleOwner) {
+            addressField.text = it
+        }
+        val lastUpdateField: TextView = binding.moreInfoLastUpdateField
+        moreInfoViewModel.lastUpdate.observe(viewLifecycleOwner) {
+            lastUpdateField.text = it
+        }
+        val availableBikesField: TextView = binding.moreInfoAvailableBikesField
+        moreInfoViewModel.availableBikes.observe(viewLifecycleOwner) {
+            availableBikesField.text = it.toString()
+        }
+        val availableStandsField: TextView = binding.moreInfoAvailableStandsField
+        moreInfoViewModel.availableStands.observe(viewLifecycleOwner) {
+            availableStandsField.text = it.toString()
+        }
+        // Call the method to get data
         moreInfoViewModel.retrieveStationInfo()
         return root
     }

@@ -8,6 +8,7 @@ import com.tapandgo.mybikes.repository.MyBikesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,20 +16,38 @@ class MoreInfoViewModel @Inject constructor(
 private val repository: MyBikesRepository
 ) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is More Info Fragment"
-    }
-    val text: LiveData<String> = _text
+    // Mutable live data
+    private val _stationName = MutableLiveData<String>()
+    private val _address = MutableLiveData<String>()
+    private val _lastUpdate = MutableLiveData<String>()
+    private val _availableBikes = MutableLiveData<Int>()
+    private val _availableStands = MutableLiveData<Int>()
+    // Variables bind with the view
+    val stationName: LiveData<String> = _stationName
+    val address: LiveData<String> = _address
+    val lastUpdate: LiveData<String> = _lastUpdate
+    val availableBikes: LiveData<Int> = _availableBikes
+    val availableStands: LiveData<Int> = _availableStands
 
+    /**
+     * Get station information
+     */
     fun retrieveStationInfo() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = repository.getStationInfo()
-                _text.postValue("Name : ${result.name}\nAddress : ${result.address}\n" +
-                        "Lat : ${result.position.lat}\n" +
-                        "Lng : ${result.position.lng}")
+                _stationName.postValue(result.name)
+                _address.postValue(result.address)
+                // Need to convert the data returned by the API to a Date
+                val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                val dateString = simpleDateFormat.format(result.lastUpdate)
+                _lastUpdate.postValue(dateString)
+                _availableStands.postValue(result.availableBikeStands)
+                _availableBikes.postValue(result.availableBikes)
+
             } catch (e: Exception) {
-                _text.postValue("${e.message}")
+                _address.postValue("Unknown")
+                _lastUpdate.postValue("N/A")
             }
         }
     }

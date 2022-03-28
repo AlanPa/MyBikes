@@ -18,13 +18,13 @@
     <fragment
         android:id="@+id/navigation_more_info"
         android:name="com.tapandgo.mybikes.ui.notifications.MoreInfoFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/detail_title"
         tools:layout="@layout/fragment_more_info" />
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.tapandgo.mybikes.ui.map.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" >
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map">
         <action
             android:id="@+id/action_mapFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
