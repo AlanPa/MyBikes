@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_more_info"
-        android:name="com.tapandgo.mybikes.ui.notifications.MoreInfoFragment"
+        android:name="com.tapandgo.mybikes.ui.moreInfo.MoreInfoFragment"
         android:label="@string/detail_title"
         tools:layout="@layout/fragment_more_info" >
         <argument

@@ -1,10 +1,11 @@
-package com.tapandgo.mybikes.ui.notifications
+package com.tapandgo.mybikes.ui.moreInfo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tapandgo.mybikes.repository.MyBikesRepository
+import com.tapandgo.mybikes.util.DateConverter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,9 +43,7 @@ private val repository: MyBikesRepository
                 _address.postValue(result.address)
                 _status.postValue(result.status)
                 // Need to convert the data returned by the API to a Date
-                val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
-                val dateString = simpleDateFormat.format(result.lastUpdate)
-                _lastUpdate.postValue(dateString)
+                _lastUpdate.postValue(DateConverter.getDateFromMs(result.lastUpdate))
                 _availableStands.postValue(result.availableBikeStands)
                 _availableBikes.postValue(result.availableBikes)
 

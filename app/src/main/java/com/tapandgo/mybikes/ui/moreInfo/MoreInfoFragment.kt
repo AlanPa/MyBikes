@@ -1,4 +1,4 @@
-package com.tapandgo.mybikes.ui.notifications
+package com.tapandgo.mybikes.ui.moreInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
