@@ -1,4 +1,4 @@
-package com.tapandgo.mybikes.ui.dashboard
+package com.tapandgo.mybikes.ui.stationList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.tapandgo.mybikes.databinding.FragmentDashboardBinding
+import com.tapandgo.mybikes.databinding.FragmentStationListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class StationListFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-    private val viewModel: DashboardViewModel by viewModels()
+    private var _binding: FragmentStationListBinding? = null
+    private val viewModel: StationListViewModel by viewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,9 +27,9 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this)[DashboardViewModel::class.java]
+            ViewModelProvider(this)[StationListViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentStationListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard

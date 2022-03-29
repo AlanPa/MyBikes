@@ -6,10 +6,10 @@
     app:startDestination="@id/mapFragment">
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.tapandgo.mybikes.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_station_list"
+        android:name="com.tapandgo.mybikes.ui.stationList.StationListFragment"
+        android:label="@string/title_station_list"
+        tools:layout="@layout/fragment_station_list" />
 
     <fragment
         android:id="@+id/navigation_more_info"
@@ -29,7 +29,7 @@
             android:id="@+id/action_mapFragment_to_navigation_more_info"
             app:destination="@id/navigation_more_info" />
         <action
-            android:id="@+id/action_mapFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_mapFragment_to_navigation_station_list"
+            app:destination="@id/navigation_station_list" />
     </fragment>
 </navigation>

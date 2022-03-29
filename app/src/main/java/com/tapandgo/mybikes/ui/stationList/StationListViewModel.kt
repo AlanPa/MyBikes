@@ -1,4 +1,4 @@
-package com.tapandgo.mybikes.ui.dashboard
+package com.tapandgo.mybikes.ui.stationList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(
+class StationListViewModel @Inject constructor(
     private val repository: MyBikesRepository
 ) : ViewModel() {
 
